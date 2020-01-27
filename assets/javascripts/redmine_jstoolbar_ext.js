@@ -137,15 +137,21 @@
     };
 
     var build_menu = function(buttons){
-      $('<div/>')
+      buttonmenu = $("<div style='position:absolute;'/>")
         .addClass('jstb_ext_submenu')
         .addClass(uniq_menu_class())
-        .css({
-          left: $button.position().left + 'px',
-          top:  $button.position().top + 24 + 'px'
-        })
-        .append(buttons)
-        .insertAfter( $button );
+        .append(buttons);
+
+      $("body").append(buttonmenu);
+      buttonmenu.position({
+        my: "left top",
+        at: "left bottom",
+        of: $button
+      });
+      $(document).on("mousedown", function() {
+        buttonmenu.remove();
+      });
+    
     };
 
     var button_opener_class = function(){
